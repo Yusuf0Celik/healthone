@@ -10,7 +10,7 @@
 
 html,
 body {
-  background-color: abstract.$grey-color;
+  background-color: rgb(220, 220, 220);
   color: abstract.$dark-color;
 }
 
@@ -20,13 +20,12 @@ body {
 
 // Navbar
 
-.nav-list {
-  display: flex;
-  list-style: none;
+.navbar {
+  background-color: rgb(240, 240, 240);
 }
 
 .nav-link {
-  margin: .5rem;
+  margin: 0 .5rem;
   padding: .5rem;
 
   &:hover {
