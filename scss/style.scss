@@ -1,0 +1,35 @@
+@use './abstract';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: abstract.$primary-font;
+  font-weight: abstract.$font-weight;
+}
+
+html,
+body {
+  background-color: abstract.$grey-color;
+  color: abstract.$dark-color;
+}
+
+.container {
+  background-color: abstract.$light-color;
+}
+
+// Navbar
+
+.nav-list {
+  display: flex;
+  list-style: none;
+}
+
+.nav-link {
+  margin: .5rem;
+  padding: .5rem;
+
+  &:hover {
+    color: red;
+  }
+}
