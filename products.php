@@ -1,7 +1,7 @@
 <?php
 require_once 'dbconnectie.php';
-$categories = $db->prepare("SELECT * FROM `category`");
-$categories->execute();
+$products = $db->prepare("SELECT * FROM `products` WHERE id = category_id");
+$products->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,31 +20,31 @@ $categories->execute();
 <body>
   <div class="container p-3 my-4">
     <?php
-    include_once 'components/header.php';
-    include_once 'components/navbar.php';
-    include_once 'components/picture.php';
+    include_once './components/header.php';
+    include_once './components/navbar.php';
+    include_once './components/picture.php';
     ?>
     <div class="row gy-3 mt-3">
-      <?php
-        foreach ($categories as $category) {
-          echo 
-          "
-          <div class='col-sm-4 col-md-3'>
-            <div class='card'>
-              <div class='card-body text-center'>
-                <a href='products.php?id='" . $category['id'] . ">
-                  <img class='product-img img-fluid center-block' src='" . $category['image'] . "'>
-                </a>
-              <div class='card-title mb-3'>" . $category['name'] . "</div>
-              </div>
-            </div>
+    <?php
+    foreach ($products as $product) {
+      echo 
+      '
+      <div class="col-sm-4 col-md-3">
+        <div class="card h-100">
+          <div class="card-body text-center position-relative">
+            <a href="product?id=' . $product["id"] . '">
+                <img class="product-img img-fluid center-block" src="' . $product["image"] . '" alt="Roeitrainer">
+            </a>
+            <div class="card-title mb-3 position-absolute">' . $product["name"] . '</div>
           </div>
-          ";
-        }
-      ?>
+        </div>
+      </div>
+      ';
+    }
+    ?>
     </div>    
     <?php
-    include_once 'components/footer.php';
+    include_once './components/footer.php';
     ?>
 </div>
 </body>
