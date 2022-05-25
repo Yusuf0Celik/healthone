@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: abstract.$primary-font;
-  font-weight: abstract.$font-weight;
 }
 
 html,
@@ -18,6 +17,12 @@ body {
   background-color: abstract.$light-color;
 }
 
+// Header
+
+.header h1 {
+  font-size: 3rem;
+}
+
 // Navbar
 
 .navbar {
@@ -27,8 +32,15 @@ body {
 .nav-link {
   margin: 0 .5rem;
   padding: .5rem;
+  color: rgb(0, 0, 0);
 
   &:hover {
     color: red;
   }
+}
+
+// Footer
+
+hr {
+  margin-bottom: 0;
 }

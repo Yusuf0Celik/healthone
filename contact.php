@@ -1,3 +1,6 @@
+<?php
+require_once 'dbconnectie.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,7 @@
     include_once 'modules/header.php';
     include_once 'modules/navbar.php';
     include_once 'modules/picture.php';
-    include_once 'modules/indexContent.php';
+    include_once 'modules/contactContent.php';
     include_once 'modules/footer.php';
     ?>
 </div>
