@@ -6,7 +6,6 @@
         <thead>
           <tr>
             <th scope="col">Datum</th>
-            <th scope="col">Tijdstip</th>
             <th scope="col">Rating</th>
             <th scope="col">Review</th>
           </tr>
@@ -14,10 +13,7 @@
         <tbody>
           <tr>
             <td>17-05-2022</td>
-            <td>22:12:26</td>
-            <td>
-              <i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i>
-            </td>
+            <td>5/5</td>
             <td>top ding ik gebruik 'em ook thuis</td>
           </tr>
         </tbody>
