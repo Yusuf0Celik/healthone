@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
-$categories = $db->prepare("SELECT * FROM `category`");
+$categories = $db->prepare("SELECT * FROM `categories`");
 $categories->execute();
 ?>
 <!DOCTYPE html>
