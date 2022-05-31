@@ -1,6 +1,7 @@
 <?php
 require_once 'dbconnectie.php';
-$products = $db->prepare("SELECT * FROM `products`");
+$id = $_GET['id'];
+$products = $db->prepare("SELECT * FROM `products` WHERE category_id = $id");
 $products->execute();
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ $products->execute();
       <div class="col-sm-4 col-md-3">
         <div class="card h-100">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <a href="product?id=' . $product["category_id"] . '">
+            <a href="product.php?id=' . $product["id"] . '">
                 <img class="product-img img-fluid center-block" src="' . $product["image"] . '" alt="Roeitrainer">
             </a>
             <div class="card-title mb-3">' . $product["name"] . '</div>

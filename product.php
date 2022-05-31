@@ -21,6 +21,33 @@ require_once 'dbconnectie.php';
     include_once 'components/header.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
+    echo 
+    '
+    <div class="row gy-3 mt-3">
+            <div class="col-sm-4 col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img class="product-img img-responsive center-block" src="/img/roeitrainer.jpg" alt="Roeitrainer">
+                        <div class="card-title mb-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-9">
+                <div class="card description-card">
+                    <div class="card-head text-center">
+                        <h4></h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Omschrijving:</h5>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    '
+    ;
+    include_once 'components/review_tab.php';
+    include_once 'components/review.php';
     include_once 'components/footer.php';
     ?>
 </div>
