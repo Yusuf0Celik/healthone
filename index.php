@@ -19,7 +19,7 @@
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
     ?>
-    <h4 class="pt-4">Sportcenter ChielOne</h4>
+    <h4 class="pt-4">Sportcenter Health<span class="text-danger">One</span></h4>
     <div class="row">
       <div class="col-6">
         <p>
@@ -47,7 +47,7 @@
         </p>
         <h5>Vragen?</h5>
         <p>
-          Heb je vragen? Kijk dan even op onze <a href="/contact">contact</a> pagina.
+          Heb je vragen? Kijk dan even op onze <a href="./contact.php">contact</a> pagina.
         </p>
       </div>
       <div class="col-6">

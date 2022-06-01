@@ -24,9 +24,9 @@ require_once 'dbconnectie.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
     ?>
-    <h4 class="pt-4">Contact met ChielOne</h4>
+    <h4 class="pt-4">Contact met Health<span class="text-danger">One</span></h4>
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-12">
         Wilt u meer informatie, of heeft u een vraag of suggestie, we horen graag van u!
         <form method="POST" action="/contact">
           <input type="hidden" name="form-sort" value="contact">
@@ -56,8 +56,8 @@ require_once 'dbconnectie.php';
           </div>
         </form>
       </div>
-      <div class="col-6">
-        <img class="img-fluid" src="img/home-img.jpg" alt="home-img">
+      <div class="col-md-6 col-12">
+        <iframe src="https://maps.google.com/maps?q=Tinwerf%2016,%202544%20ED%20Den%20Haag&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen=""></iframe>
       </div>
     </div>
     <?php

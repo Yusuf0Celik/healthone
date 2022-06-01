@@ -1,3 +1,14 @@
+<?php
+$id = $_GET['id'];
+$reviews = $db->prepare("SELECT * FROM `reviews` WHERE id = $id");
+$reviews->execute();
+foreach ($reviews as $review) {
+  $reviewName = $review["name"];
+  $reviewDate = $review["date"];
+  $reviewRating = $review["rating"];
+  $reviewMessage = $review["message"];
+}
+?>
 <div class="tab-content mt-3" id="myTabContent">
   <div class="tab-pane fade pt-3 active show" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="col-sm-12">
@@ -13,10 +24,10 @@
         </thead>
         <tbody>
           <tr>
-            <td>Yusuf Celik</td>
-            <td>17-05-2022</td>
-            <td>5/5</td>
-            <td>top ding ik gebruik 'em ook thuis</td>
+            <td><?php echo $reviewName ?></td>
+            <td><?php echo $reviewDate ?></td>
+            <td><?php echo $reviewRating ?>/5</td>
+            <td><?php echo $reviewMessage ?></td>
           </tr>
         </tbody>
       </table>

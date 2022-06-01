@@ -17,10 +17,10 @@
       </ul>
       <ul class="navbar-nav ms-auto text-center">
         <li class="nav-item">
-          <a class="nav-link " href="#">Registreren</a>
+          <a class="nav-link " href="./register.php">Registreren</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="#">Inloggen </a>
+          <a class="nav-link  " href="./login.php">Inloggen </a>
         </li>
       </ul>
     </div>
