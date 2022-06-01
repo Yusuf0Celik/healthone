@@ -28,19 +28,18 @@ $products->execute();
     <div class="row gy-3 mt-3">
     <?php
     foreach ($products as $product) {
-      echo 
-      '
+      ?>
       <div class="col-sm-4 col-md-3">
         <div class="card h-100">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <a href="product.php?id=' . $product["id"] . '">
-                <img class="product-img img-fluid center-block" src="' . $product["image"] . '" alt="Roeitrainer">
+            <a href="product.php?id='<?php echo $product["id"] ?>'">
+                <img class="product-img img-fluid center-block" src="<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>">
             </a>
-            <div class="card-title mb-3">' . $product["name"] . '</div>
+            <div class="card-title mb-3"><?php echo $product["name"] ?></div>
           </div>
         </div>
       </div>
-      ';
+      <?php
     }
     ?>
     </div>    

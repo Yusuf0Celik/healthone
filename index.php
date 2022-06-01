@@ -18,8 +18,7 @@
     include_once 'components/header.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
-    echo 
-    '
+    ?>
     <h4 class="pt-4">Sportcenter ChielOne</h4>
     <div class="row">
       <div class="col-6">
@@ -55,7 +54,7 @@
         <img class="img-fluid" src="img\home-img.jpg" alt="home-img">
       </div>
     </div>
-    ';
+    <?php
     include_once 'components/footer.php';
     ?>
 </div>
