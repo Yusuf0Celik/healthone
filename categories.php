@@ -32,7 +32,7 @@ $categories->execute();
           <div class='col-sm-4 col-md-3'>
             <div class='card'>
               <div class='card-body text-center'>
-                <a href='category.php?id='" . $category['id'] . ">
+                <a href='category.php?id=" . $category['id'] . "'>
                   <img class='product-img img-fluid center-block' src='" . $category['image'] . "'>
                 </a>
               <div class='card-title mb-3'>" . $category['name'] . "</div>
