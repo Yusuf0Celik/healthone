@@ -4,12 +4,6 @@ $reviews = $db->prepare("SELECT * FROM `reviews` WHERE product_id = :id");
 $reviews->bindParam("id", $_GET['id']);
 $reviews->execute();
 $result = $reviews->fetchAll(PDO::FETCH_ASSOC);
-foreach ($result as $review) {
-  $reviewName = $review["name"];
-  $reviewDate = $review["date"];
-  $reviewRating = $review["rating"];
-  $reviewMessage = $review["message"];
-}
 ?>
 <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
   <li class="nav-item">
@@ -38,42 +32,18 @@ foreach ($result as $review) {
         </thead>
         <tbody>
           <tr>
-            <td>
-            <?php 
-            if(!$reviewName) {
-              echo '';
-            } else {
-              echo $reviewName;
-            } 
-            ?>
-            </td>
-            <td>
-            <?php 
-            if(!$reviewDate) {
-              echo '';
-            } else {
-              echo $reviewDate;
-            } 
-            ?>
-            </td>
-            <td>
-            <?php 
-            if(!$reviewRating) {
-              echo '';
-            } else {
-              echo $reviewRating . "/5";
-            } 
-            ?>
-            </td>
-            <td>
-            <?php 
-            if(!$reviewMessage) {
-              echo '';
-            } else {
-              echo $reviewMessage;
-            }
-            ?>
-            </td>
+            <?php
+            foreach ($result AS $review) {
+              ?>
+              <tr>
+                <td><?= $review["name"]?></td>
+                <td><?= $review["date"]?></td>
+                <td><?= $review["rating"]?></td>
+                <td><?= $review["message"]?></td>
+              </tr>
+              <?php
+              }
+              ?>
           </tr>
         </tbody>
       </table>
