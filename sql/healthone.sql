@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 02:29 PM
+-- Generation Time: Jun 02, 2022 at 04:51 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -99,7 +99,8 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `name`, `message`, `rating`, `date`, `product_id`) VALUES
-(1, 'Yusuf Celik', 'lekker ding', 5, '2022-06-01', 1);
+(1, 'Yusuf Celik', 'lekker ding', 5, '2022-06-01', 1),
+(2, 'Yusuf Celik', 'beetje matig', 2, '2022-06-02', 2);
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Yusuf Celik', 'yc5693410@gmail.com', 'qwerty');
+(1, 'Yusuf Celik', 'yc5693410@gmail.com', 'qwerty'),
+(2, 'qwerty', 'qwerty@qwerty.nl', 'qwerty'),
+(3, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
+(4, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
+(5, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
+(6, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
+(7, 'Yusuf Celik', 'test2@gmail.com', 'qwerty');
 
 --
 -- Indexes for dumped tables
@@ -171,13 +178,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

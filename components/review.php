@@ -13,12 +13,12 @@ foreach ($result as $review) {
 ?>
 <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#" role="tab" aria-controls="home" aria-selected="false">
+    <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home-tab" role="tab" aria-controls="home" aria-selected="false">
       Reviews
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="true">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-tab" role="tab" aria-controls="profile" aria-selected="true">
       Geef een review
     </a>
   </li>
@@ -87,8 +87,8 @@ foreach ($result as $review) {
           Om een review achter te laten dien je geregistreerd en ingelogd te zijn.<br>
           Klik op een van de onderste knoppen.<br>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/user/login" class="btn btn-outline-success">Inloggen</a>
-            <a href="/user/register" class="btn btn-outline-success">Registreren</a>
+            <a href="../login.php" class="btn btn-outline-success">Inloggen</a>
+            <a href="../register.php" class="btn btn-outline-success">Registreren</a>
           </div>
         </div>
       </div>
