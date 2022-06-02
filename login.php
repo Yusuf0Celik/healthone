@@ -1,5 +1,51 @@
 <?php
-  require_once 'dbconnectie.php';
+require_once 'dbconnectie.php';
+session_start();
+if (isset($_SERVER['submit'])) {
+  $email = $_SERVER['email'];
+  $password = $_SERVER['password'];
+
+  $users = $db->prepare("SELECT * FROM `users`");
+  $users->execute();
+  $result = $users->fetchAll(PDO::FETCH_ASSOC);
+
+  $userExists = false;
+  
+  foreach ($result as &$user) {
+    if ($email == $user['email'] && $password == $user['password']) {
+      $userExists = true;
+      $userID = $user['id'];
+      $username = $user['name'];
+
+      if ($user['role'] == 'admin') {
+        $admin = true;
+      } else {
+        $admin = false;
+      }
+    }
+  }
+
+  if ($userExists == true && $admin == true) {
+
+    $alertMessage = 'alert-succes';
+    $_SESSION['admin'] = true;
+    $userStatus = 'Admin';
+    header("Location: ../loggedin.php?id=".$userID);
+
+  } else if (($userExists == true && $admin == false)) {
+
+    $alertMessage = 'alert-succes';
+    $userStatus = 'Gebruiker';
+    header("Location: ../loggedin.php?id=".$userID);
+
+  } else {
+    $userStatus = 'Gebruiker bestaat niet';
+  }
+} else {
+  $email = '';
+  $password = '';
+  $userStatus = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +72,12 @@
     <div class="row gy-3 mt-3">
       <div class="col-sm-12">
         <h4>Voer je gegevens in om in te loggen</h4>
-        <form method="POST" action="/user/login">
+        <form method="POST" action="">
           <input type="hidden" name="form-sort" value="login">
           <div class="row mt-3">
             <div class="form-group col-6">
               <label for="email">E-mail adres</label>
-              <input type="email" required="" class="form-control" name="email" placeholder="jan@jan.nl">
+              <input name="email" type="email" required="" class="form-control" placeholder="jan@jan.nl">
             </div>
             <div class="row mt-3">
               <div class="form-group col-6">
@@ -41,8 +87,11 @@
             </div>
           </div>
           <div class="form-group mt-3">
-            <button type="submit" class="btn btn-outline-primary">Inloggen</button>
+            <button type="submit" name="submit" class="btn btn-outline-primary">Inloggen</button>
           </div>
+          <?php if (isset($_SERVER['submit'])) { ?>
+          <div class="alert <?php echo $alertMessage; ?>"><?php echo $userStatus ?></div>
+          <?php } echo $username ?>
           <div class="form-group mt-3">
             <a href="./register.php" class="">
               Nog geen account? Klik hier om je te registreren

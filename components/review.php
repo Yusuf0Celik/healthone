@@ -33,7 +33,7 @@ $result = $reviews->fetchAll(PDO::FETCH_ASSOC);
         <tbody>
           <tr>
             <?php
-            foreach ($result AS $review) {
+            foreach ($result as &$review) {
               ?>
               <tr>
                 <td><?= $review["name"]?></td>

@@ -1,12 +1,12 @@
 <?php
 
 try {
-  $dbhost = 'locahost';
+  $dbhost = 'localhost';
   $dbname = 'healthone';
-  $username = 'root';
-  $password = '';
+  $db_username = 'root';
+  $db_password = '';
 
-  $db = new PDO("mysql:host=localhost;dbname=healthone", "$username", "$password");
+  $db = new PDO("mysql:host=$dbhost;dbname=$dbname", "$db_username", "$db_password");
 } catch (PDOException $e) {
   die ("Error!: " . $e->getMessage());
 }

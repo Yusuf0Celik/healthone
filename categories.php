@@ -2,6 +2,7 @@
 require_once 'dbconnectie.php';
 $categories = $db->prepare("SELECT * FROM `categories`");
 $categories->execute();
+$result = $categories->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@ $categories->execute();
     ?>
     <div class="row gy-3 mt-3">
       <?php
-        foreach ($categories as $category) {
+        foreach ($result as &$category) {
           ?>
           <div class="col-sm-4 col-md-3">
             <div class="card">

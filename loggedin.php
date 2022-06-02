@@ -1,13 +1,9 @@
 <?php
 require_once 'dbconnectie.php';
-$categories = $db->prepare("SELECT * FROM `products` WHERE category_id = :id");
-$categories->bindParam("id", $_GET['id']);
-$categories->execute();
-$result = $categories->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,34 +16,30 @@ $result = $categories->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="css/style.css">
   <title>Healthone</title>
 </head>
+
 <body>
   <div class="container p-3 my-4">
     <?php
-    include_once './components/header.php';
-    include_once './components/navbar.php';
-    include_once './components/picture.php';
+    include_once 'components/header.php';
+    include_once 'components/navbar.php';
+    include_once 'components/picture.php';
     ?>
-    <div class="row gy-3 mt-3">
+    <div class='row mt-2'>
+      <a href='#' class='mb-5'>Home</a> 
+      <h5>Welkom <?php echo $userName ?></h5> 
+      <p class='text-break'>
+          Fit en gezond zijn is geen vanzelfsprekendheid.
+          We moeten er zelf wat voor doen. Goede, gezonde voeding is hiervoor de basis
+          Bewegen hoort hier ook bij. Regelmatig bewegen zorgt voor een goede doorbloeding en 
+          draagt bij aan ontspanning van lichaam en geest.
+          Sporten is goed voor sterkere spieren en voor de conditie. Sportcenter Health One
+          heeft verschillende sportapparaten om mee te kunnen werken aan je conditie. 
+      </p>
+    </div>
     <?php
-    foreach ($result as &$product) {
-      ?>
-      <div class="col-sm-4 col-md-3">
-        <div class="card h-100">
-          <div class="card-body text-center d-flex flex-column justify-content-between">
-            <a href="product.php?id=<?php echo $product['id'] ?>">
-              <img class="product-img img-fluid center-block" src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>">
-            </a>
-            <div class="card-title mb-3"><?php echo $product['name'] ?></div>
-          </div>
-        </div>
-      </div>
-      <?php
-    }
+    include_once 'components/footer.php';
     ?>
-    </div>    
-    <?php
-    include_once './components/footer.php';
-    ?>
-</div>
+  </div>
 </body>
+
 </html>

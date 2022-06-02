@@ -32,7 +32,7 @@
       $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
       $password = filter_input(INPUT_POST, "password");
     
-      $query = $db->prepare("INSERT INTO users (name, email, password) VALUES ('$username', '$email', '$password')");
+      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES ('$username', '$email', '$password', 'member')");
       if ($query->execute()) {
         echo '<div class="alert alert-success" role="alert">Gegevens Opgeslagen <a href="./login.php">Log in!</a></div>';
       }
@@ -55,10 +55,6 @@
           <div class="form-group col">
             <label for="password">Wachtwoord</label>
             <input name="password" type="password" required="" class="form-control" placeholder="Wachtwoord">
-          </div>
-          <div class="form-group col">
-            <label for="confirm_password">Herhaal je wachtwoord</label>
-            <input name="confirm_password" type="password" required="" class="form-control" placeholder="Herhaal wachtwoord">
           </div>
         </div>
         <div class="form-group mt-3">

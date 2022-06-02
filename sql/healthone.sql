@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 04:51 PM
+-- Generation Time: Jun 02, 2022 at 08:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -112,21 +112,23 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(30) NOT NULL
+  `password` varchar(30) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Yusuf Celik', 'yc5693410@gmail.com', 'qwerty'),
-(2, 'qwerty', 'qwerty@qwerty.nl', 'qwerty'),
-(3, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
-(4, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
-(5, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
-(6, 'Yusuf Celik', 'test@gmail.com', 'qwerty'),
-(7, 'Yusuf Celik', 'test2@gmail.com', 'qwerty');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
+(1, 'Yusuf Celik', 'yc5693410@gmail.com', 'qwerty', 'admin'),
+(2, 'qwerty', 'qwerty@qwerty.nl', 'qwerty', 'member'),
+(3, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
+(4, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
+(5, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
+(6, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
+(7, 'Yusuf Celik', 'test2@gmail.com', 'qwerty', 'member'),
+(8, 'Admin', 'admin@gmail.com', 'admin', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -184,7 +186,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
