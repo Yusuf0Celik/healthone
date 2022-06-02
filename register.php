@@ -1,15 +1,5 @@
 <?php
   require_once 'dbconnectie.php';
-  if (isset($_SERVER["submit"])) {
-    $username = filter_input(INPUT_POST, "username");
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, "password");
-
-    $query = $db->prepare("INSERT INTO users (name, email, password) VALUES ($username, $email, $password)");
-    if ($query->execute()) {
-      echo 'gegevens opgeslagen';
-    }
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,9 +51,21 @@
         </div>
         <div class="form-group mt-3">
           <button type="submit" class="btn btn-outline-primary">Registreer je vandaag</button>
+          <?php
+            if (isset($_POST["submit"])) {
+              $username = filter_input(INPUT_POST, "username");
+              $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+              $password = filter_input(INPUT_POST, "password");
+          
+              $query = $db->prepare("INSERT INTO users (name, email, password) VALUES ($username, $email, $password)");
+              if ($query->execute()) {
+                echo 'gegevens opgeslagen';
+              }
+            }
+          ?>
         </div>
         <div class="form-group mt-3">
-          <a href="./login.php" class="">
+          <a href="./login.php">
             Al een account? Klik hier om in te loggen.
           </a>
         </div>
