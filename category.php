@@ -1,8 +1,10 @@
 <?php
 require_once 'dbconnectie.php';
-$id = $_GET['id'];
-$products = $db->prepare("SELECT * FROM `products` WHERE category_id = $id");
-$products->execute();
+$categories = $db->prepare("SELECT * FROM `products` WHERE category_id = :id");
+$categories->bindParam("id", $_GET['id']);
+$categories->execute();
+$result = $categories->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +29,12 @@ $products->execute();
     ?>
     <div class="row gy-3 mt-3">
     <?php
-    foreach ($products as $product) {
+    foreach ($result as $product) {
       ?>
       <div class="col-sm-4 col-md-3">
         <div class="card h-100">
           <div class="card-body text-center d-flex flex-column justify-content-between">
-            <a href="product.php?id='<?php echo $product['id'] ?>'">
+            <a href="product.php?id=<?php echo $product['id'] ?>">
               <img class="product-img img-fluid center-block" src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>">
             </a>
             <div class="card-title mb-3"><?php echo $product['name'] ?></div>

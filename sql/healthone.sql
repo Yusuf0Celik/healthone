@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 04:10 PM
+-- Generation Time: Jun 02, 2022 at 02:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -89,7 +89,7 @@ CREATE TABLE `reviews` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
-  `rating` int(11) NOT NULL,
+  `rating` int(1) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

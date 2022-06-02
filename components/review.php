@@ -1,8 +1,10 @@
 <?php
 $id = $_GET['id'];
-$reviews = $db->prepare("SELECT * FROM `reviews` WHERE id = $id");
+$reviews = $db->prepare("SELECT * FROM `reviews` WHERE product_id = :id");
+$reviews->bindParam("id", $_GET['id']);
 $reviews->execute();
-foreach ($reviews as $review) {
+$result = $reviews->fetchAll(PDO::FETCH_ASSOC);
+foreach ($result as $review) {
   $reviewName = $review["name"];
   $reviewDate = $review["date"];
   $reviewRating = $review["rating"];
@@ -24,10 +26,38 @@ foreach ($reviews as $review) {
         </thead>
         <tbody>
           <tr>
-            <td><?php echo $reviewName ?></td>
-            <td><?php echo $reviewDate ?></td>
-            <td><?php echo $reviewRating ?>/5</td>
-            <td><?php echo $reviewMessage ?></td>
+            <td>
+            <?php if(!$reviewName) {
+              echo '';
+            } else {
+              echo $reviewName;
+            } 
+            ?>
+            </td>
+            <td>
+            <?php if(!$reviewDate) {
+              echo '';
+            } else {
+              echo $reviewDate;
+            } 
+            ?>
+            </td>
+            <td>
+            <?php if(!$reviewRating) {
+              echo '';
+            } else {
+              echo $reviewRating . "/5";
+            } 
+            ?>
+            </td>
+            <td>
+            <?php if(!$reviewMessage) {
+              echo '';
+            } else {
+              echo $reviewMessage;
+            }
+            ?>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,10 +1,11 @@
 <?php
 require_once 'dbconnectie.php';
-$id = $_GET['id'];
-$products = $db->prepare("SELECT * FROM `products` WHERE id = $id");
+$products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
+$products->bindParam("id", $_GET['id']);
 $products->execute();
+$result = $products->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($products as $product) {
+foreach ($result as $product) {
   $productName = $product["name"];
   $productImage = $product["image"];
   $productDetail = $product["detail"];

@@ -3,7 +3,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +16,6 @@
   <link rel="stylesheet" href="css/style.css">
   <title>Healthone</title>
 </head>
-
 <body>
   <div class="container p-3 my-4">
     <?php
@@ -58,5 +56,4 @@
     ?>
   </div>
 </body>
-
 </html>
