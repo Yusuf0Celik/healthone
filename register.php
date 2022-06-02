@@ -26,6 +26,18 @@
     include_once 'components/picture.php';
     ?>
     <div class="col-sm-12 mt-3">
+    <?php
+    if (isset($_POST["submit"])) {
+      $username = filter_input(INPUT_POST, "username");
+      $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+      $password = filter_input(INPUT_POST, "password");
+    
+      $query = $db->prepare("INSERT INTO users (name, email, password) VALUES ('$username', '$email', '$password')");
+      if ($query->execute()) {
+        echo '<div class="alert alert-success" role="alert">Gegevens Opgeslagen <a href="./login.php">Log in!</a></div>';
+      }
+    }
+    ?>
       <h4>Registreer je bij ons!</h4>
       <form method="POST" action="">
         <input type="hidden" name="form-sort" value="register">
@@ -50,19 +62,7 @@
           </div>
         </div>
         <div class="form-group mt-3">
-          <button type="submit" class="btn btn-outline-primary">Registreer je vandaag</button>
-          <?php
-            if (isset($_POST["submit"])) {
-              $username = filter_input(INPUT_POST, "username");
-              $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-              $password = filter_input(INPUT_POST, "password");
-          
-              $query = $db->prepare("INSERT INTO users (name, email, password) VALUES ($username, $email, $password)");
-              if ($query->execute()) {
-                echo 'gegevens opgeslagen';
-              }
-            }
-          ?>
+          <button type="submit" name="submit" class="btn btn-outline-primary">Registreer je vandaag</button>
         </div>
         <div class="form-group mt-3">
           <a href="./login.php">
