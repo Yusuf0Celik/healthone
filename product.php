@@ -54,7 +54,6 @@ foreach ($result as $product) {
       </div>
     </div>
     <?php
-    include_once 'components/review_tab.php';
     include_once 'components/review.php';
     include_once 'components/footer.php';
     ?>

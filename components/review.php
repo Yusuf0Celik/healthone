@@ -11,6 +11,18 @@ foreach ($result as $review) {
   $reviewMessage = $review["message"];
 }
 ?>
+<ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#" role="tab" aria-controls="home" aria-selected="false">
+      Reviews
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="true">
+      Geef een review
+    </a>
+  </li>
+</ul>
 <div class="tab-content mt-3" id="myTabContent">
   <div class="tab-pane fade pt-3 active show" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="col-sm-12">
@@ -27,7 +39,8 @@ foreach ($result as $review) {
         <tbody>
           <tr>
             <td>
-            <?php if(!$reviewName) {
+            <?php 
+            if(!$reviewName) {
               echo '';
             } else {
               echo $reviewName;
@@ -35,7 +48,8 @@ foreach ($result as $review) {
             ?>
             </td>
             <td>
-            <?php if(!$reviewDate) {
+            <?php 
+            if(!$reviewDate) {
               echo '';
             } else {
               echo $reviewDate;
@@ -43,7 +57,8 @@ foreach ($result as $review) {
             ?>
             </td>
             <td>
-            <?php if(!$reviewRating) {
+            <?php 
+            if(!$reviewRating) {
               echo '';
             } else {
               echo $reviewRating . "/5";
@@ -51,7 +66,8 @@ foreach ($result as $review) {
             ?>
             </td>
             <td>
-            <?php if(!$reviewMessage) {
+            <?php 
+            if(!$reviewMessage) {
               echo '';
             } else {
               echo $reviewMessage;
