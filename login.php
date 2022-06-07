@@ -1,43 +1,27 @@
 <?php
 require_once 'dbconnectie.php';
 session_start();
-if (isset($_SERVER['submit'])) {
-  $email = $_SERVER['email'];
-  $password = $_SERVER['password'];
+if (isset($_POST['submit'])) {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
 
-  $users = $db->prepare("SELECT * FROM `users`");
+  $users = $db->prepare("SELECT * FROM `users` WHERE password = '$password' AND email = '$email'");
   $users->execute();
-  $result = $users->fetchAll(PDO::FETCH_ASSOC);
+  $user = $users->fetch(PDO::FETCH_ASSOC);
 
-  $userExists = false;
-  
-  foreach ($result as &$user) {
-    if ($email == $user['email'] && $password == $user['password']) {
-      $userExists = true;
-      $userID = $user['id'];
-      $username = $user['name'];
-
-      if ($user['role'] == 'admin') {
-        $admin = true;
-      } else {
-        $admin = false;
-      }
-    }
+  if (!$user) {
+    var_dump($user) ;
+    $userExists = false;
+  } else {
+    $userExists = true;
+    $_SESSION["loggedin"] = $user['id'];
+    $username = $user['name'];
+    header("Location: ./loggedin.php");
   }
 
-  if ($userExists == true && $admin == true) {
-
+  if ($userExists) {
     $alertMessage = 'alert-succes';
-    $_SESSION['admin'] = true;
-    $userStatus = 'Admin';
-    header("Location: ../loggedin.php?id=".$userID);
-
-  } else if (($userExists == true && $admin == false)) {
-
-    $alertMessage = 'alert-succes';
-    $userStatus = 'Gebruiker';
-    header("Location: ../loggedin.php?id=".$userID);
-
+    $userStatus = 'loggedin';
   } else {
     $userStatus = 'Gebruiker bestaat niet';
   }
@@ -91,7 +75,7 @@ if (isset($_SERVER['submit'])) {
           </div>
           <?php if (isset($_SERVER['submit'])) { ?>
           <div class="alert <?php echo $alertMessage; ?>"><?php echo $userStatus ?></div>
-          <?php } echo $username ?>
+          <?php } ?>
           <div class="form-group mt-3">
             <a href="./register.php" class="">
               Nog geen account? Klik hier om je te registreren
