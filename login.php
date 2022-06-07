@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
   $user = $users->fetch(PDO::FETCH_ASSOC);
 
   if (!$user) {
-    var_dump($user) ;
     $userExists = false;
+    $alertMessage = 'alert-warning';
   } else {
     $userExists = true;
     $_SESSION["loggedin"] = $user['id'];
@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 
   if ($userExists) {
     $alertMessage = 'alert-succes';
-    $userStatus = 'loggedin';
+    $userStatus = 'Logged In';
   } else {
     $userStatus = 'Gebruiker bestaat niet';
   }
