@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 08:09 PM
+-- Generation Time: Jun 09, 2022 at 10:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -121,14 +121,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Yusuf Celik', 'yc5693410@gmail.com', 'qwerty', 'admin'),
-(2, 'qwerty', 'qwerty@qwerty.nl', 'qwerty', 'member'),
-(3, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
-(4, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
-(5, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
-(6, 'Yusuf Celik', 'test@gmail.com', 'qwerty', 'member'),
-(7, 'Yusuf Celik', 'test2@gmail.com', 'qwerty', 'member'),
-(8, 'Admin', 'admin@gmail.com', 'admin', 'admin');
+(1, 'Admin', 'admin@admin.nl', 'admin', 'admin'),
+(2, 'qwdasfq', 'qwerty@qwerty.nl', 'qwerty', 'member'),
+(3, 'hafea', 'test@gmail.com', 'qwerty', 'member'),
+(7, 'zxcvbn', 'test2@gmail.com', 'qwerty', 'member'),
+(8, 'Yusuf Celik', 'admin@gmail.com', 'admin', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -186,7 +183,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
