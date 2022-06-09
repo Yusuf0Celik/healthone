@@ -25,11 +25,7 @@
   <div class="container p-3 my-4">
     <?php
     include_once 'components/header.php';
-    if ($userStatus == 'loggedin') {
-      include_once 'components/navbar_login.php';
-    } else {
-      include_once 'components/navbar.php';
-    }
+    include_once 'components/navbar.php';
     include_once 'components/picture.php';
     ?>
     <div class="col-sm-12 mt-3">
@@ -41,7 +37,10 @@
       
       if( $result["email"]);
 
-      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES ('$username', '$email', '$password', 'member')");
+      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES  :username, :email, :password, 'member')");
+      $query->bindParam("username", $username);
+      $query->bindParam("email", $email);
+      $query->bindParam("password", $password);
       if ($query->execute()) {
         echo '<div class="alert alert-success" role="alert">Gegevens Opgeslagen <a href="./login.php">Log in!</a></div>';
       }

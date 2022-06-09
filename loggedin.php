@@ -1,5 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,16 +22,11 @@ require_once 'dbconnectie.php';
   <div class="container p-3 my-4">
     <?php
     include_once 'components/header.php';
-    if ($userExists) {
-      include_once 'components/navbar_login.php';
-    } else {
-      include_once 'components/navbar.php';
-    }
+    include_once 'components/navbar.php';
     include_once 'components/picture.php';
     ?>
-    <div class='row mt-2'>
-      <a href='#' class='mb-5'>Home</a> 
-      <h5>Welkom <?php echo $_SESSION["name"] ?></h5> 
+    <div class='row mt-5'>
+      <h5>Welkom <?php echo $_SESSION["name"]->name ?></h5> <span class="text-succes ms-3"><?php echo $_SESSION["role"] ?></span>
       <p class='text-break'>
           Fit en gezond zijn is geen vanzelfsprekendheid.
           We moeten er zelf wat voor doen. Goede, gezonde voeding is hiervoor de basis

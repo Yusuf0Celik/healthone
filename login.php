@@ -1,11 +1,12 @@
 <?php
 require_once 'dbconnectie.php';
-session_start();
 if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $users = $db->prepare("SELECT * FROM `users` WHERE password = '$password' AND email = '$email'");
+  $users = $db->prepare("SELECT * FROM `users` WHERE password = :password AND email = :email");
+  $users->bindParam("password", $password);
+  $users->bindParam("email", $email);
   $users->execute();
   $user = $users->fetch(PDO::FETCH_ASSOC);
 
@@ -14,12 +15,18 @@ if (isset($_POST['submit'])) {
     $alertMessage = 'alert-warning';
   } else {
     $userExists = true;
-    $_SESSION["loggedin"] = $user['id'];
-    $username = $user['name'];
+
+    $_SESSION["id"] = $user['id'];
+    $_SESSION["name"] = $user['name'];
+    $_SESSION["role"] = $user['role'];
+
     header("Location: ./loggedin.php");
   }
 
-  if ($userExists) {
+  if (($email == '') ||($wachtwoord == ''))  {
+    $alertMessage = 'text-danger';
+    $userStatus = 'Velden zijn leeg';
+  } else if ($userExists) {
     $alertMessage = 'alert-succes';
     $userStatus = 'Logged In';
   } else {
