@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2022 at 10:00 PM
+-- Generation Time: Jun 11, 2022 at 12:06 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -125,7 +125,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 (2, 'qwdasfq', 'qwerty@qwerty.nl', 'qwerty', 'member'),
 (3, 'hafea', 'test@gmail.com', 'qwerty', 'member'),
 (7, 'zxcvbn', 'test2@gmail.com', 'qwerty', 'member'),
-(8, 'Yusuf Celik', 'admin@gmail.com', 'admin', 'admin');
+(8, 'Yusuf Celik', 'admin@gmail.com', 'admin', 'admin'),
+(22, 'Muhammed Mustafa Aktas', 'degamegast11@gmail.nl', 'qwerty', 'member');
 
 --
 -- Indexes for dumped tables
@@ -183,7 +184,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
