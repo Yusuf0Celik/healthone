@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
-session_start();
+include 'loggedInUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,10 @@ session_start();
     include_once 'components/picture.php';
     ?>
     <div class='row mt-5'>
-      <h5>Welkom <?php echo $_SESSION["name"]->name ?></h5> <span class="text-succes ms-3"><?php echo $_SESSION["role"] ?></span>
+      <div class="d-flex justify-content-between align-items-center">
+        <h5>Welkom <?php echo $userName ?></h5>
+        <span class="badge badge-<?php if($userRole == "admin") {echo 'danger';} else {echo 'primary';} ?> ms-3"><?php echo strtoupper($userRole) ?></span>
+      </div>
       <p class='text-break'>
           Fit en gezond zijn is geen vanzelfsprekendheid.
           We moeten er zelf wat voor doen. Goede, gezonde voeding is hiervoor de basis

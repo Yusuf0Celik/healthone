@@ -1,5 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
+include 'loggedInUser.php';
 $categories = $db->prepare("SELECT * FROM `products` WHERE category_id = :id");
 $categories->bindParam("id", $_GET['id']);
 $categories->execute();

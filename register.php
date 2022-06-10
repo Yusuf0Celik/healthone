@@ -1,8 +1,5 @@
 <?php
-  require_once 'dbconnectie.php';
-  $users = $db->prepare("SELECT `email` FROM `users`");
-  $users->execute();
-  $result = $users->fetch(PDO::FETCH_ASSOC);
+require_once 'dbconnectie.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +31,13 @@
       $username = filter_input(INPUT_POST, "username");
       $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
       $password = filter_input(INPUT_POST, "password");
-      
-      if( $result["email"]);
+      $role = 'member';
 
-      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES  :username, :email, :password, 'member')");
+      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES (:username, :email, :password, :role)");
       $query->bindParam("username", $username);
       $query->bindParam("email", $email);
       $query->bindParam("password", $password);
+      $query->bindParam("role", $role);
       if ($query->execute()) {
         echo '<div class="alert alert-success" role="alert">Gegevens Opgeslagen <a href="./login.php">Log in!</a></div>';
       }

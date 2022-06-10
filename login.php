@@ -1,5 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
+session_start();
 if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
@@ -16,14 +17,12 @@ if (isset($_POST['submit'])) {
   } else {
     $userExists = true;
 
-    $_SESSION["id"] = $user['id'];
-    $_SESSION["name"] = $user['name'];
-    $_SESSION["role"] = $user['role'];
+    $_SESSION['loggedin_user_id'] = $user['id'];
 
     header("Location: ./loggedin.php");
   }
 
-  if (($email == '') ||($wachtwoord == ''))  {
+  if (($email == '') ||($password == ''))  {
     $alertMessage = 'text-danger';
     $userStatus = 'Velden zijn leeg';
   } else if ($userExists) {

@@ -1,5 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,10 +33,10 @@ require_once 'dbconnectie.php';
           <input type="hidden" name="form-sort" value="contact">
           <div class="row mt-3">
             <div class="col">
-              <input type="text" name="name" class="form-control" required="" value="" placeholder="Uw naam">
+              <input type="text" name="name" class="form-control" required="" value="<?php if($_SESSION) {echo $_SESSION["name"];} else {echo '';} ?>" placeholder="Uw naam">
             </div>
             <div class="col">
-              <input type="email" name="email" required="" class="form-control" value="" placeholder="jan@jan.nl">
+              <input type="email" name="email" required="" class="form-control" value="<?php if($_SESSION) {echo $_SESSION["email"];} else {echo '';} ?>" placeholder="jan@jan.nl">
             </div>
           </div>
           <div class="row mt-3">

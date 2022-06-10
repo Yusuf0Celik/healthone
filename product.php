@@ -1,5 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
+include 'loggedInUser.php';
 $products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
 $products->bindParam("id", $_GET['id']);
 $products->execute();

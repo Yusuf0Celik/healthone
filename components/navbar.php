@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION) {
+if (isset($_SESSION["loggedin_user_id"])) {
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -20,10 +20,19 @@ if ($_SESSION) {
       </ul>
       <ul class="navbar-nav ms-auto text-center">
         <li class="nav-item">
-          <a class="nav-link " href="./register.php">Dashboard</a>
+          <a class="nav-link " href="./profile.php">Profile</a>
         </li>
+        <?php 
+        if ($userRole == 'admin') {
+          ?>
         <li class="nav-item">
-          <a class="nav-link  " href="./index.php">Uitloggen </a>
+          <a class="nav-link " href="./adminDashboard.php">Dashboard</a>
+        </li>
+          <?php
+        }
+        ?>
+        <li class="nav-item">
+          <a class="nav-link  " href="./logout.php">Uitloggen</a>
         </li>
       </ul>
     </div>
