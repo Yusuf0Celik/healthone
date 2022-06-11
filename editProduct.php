@@ -1,9 +1,13 @@
 <?php
 require_once 'dbconnectie.php';
 include 'loggedInUser.php';
-if (!isset($_SESSION["loggedin_user_id"])) {
-  echo "Error: Log in first!";
+if (!isset($userRole) == 'admin') {
+  echo "Error: Not Allowed";
 } else {
+
+  $products = $db->prepare("SELECT * FROM `products`");
+  $products->execute();
+  $result = $products->fetchAll(PDO::FETCH_ASSOC);
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,10 +31,12 @@ if (!isset($_SESSION["loggedin_user_id"])) {
   include_once 'components/picture.php';
   
   ?>
-  
+  <div class="row my-4">
+    
+  </div>
   <?php
   include_once 'components/footer.php';
-?>
+  ?>
 </div>
 </body>
 </html>

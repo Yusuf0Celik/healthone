@@ -9,5 +9,6 @@ if (isset($_SESSION['loggedin_user_id'])) {
   
   $userRole = $user["role"];
   $userName = $user["name"];
+  $userEmail = $user["email"];
 }
 ?>
