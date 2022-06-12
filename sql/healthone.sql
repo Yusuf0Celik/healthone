@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 12:06 AM
+-- Generation Time: Jun 12, 2022 at 03:08 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -77,7 +77,9 @@ INSERT INTO `products` (`id`, `name`, `image`, `detail`, `category_id`) VALUES
 (13, 'Fitrun 70I', 'img/fitrun-70i.jpg', 'Een roeitrainer zorgt net als de crosstrainer voor een full body workout. Je spreekt vrijwel alle spieren aan in je lichaam door de roeiende beweging die je maakt. Met een roeimachine pak je primair de beenspieren, armspieren en rugspieren aan.', 4),
 (14, 'Dukefitness Loopband T40', 'img/dukefitness-loopband-t40.jpg', 'Wil je echt sporten dan kies je voor de roei je rot roeitrainer, zwaard, hard en je bent binnen no-time de expert.', 4),
 (15, 'Bowflex Loopband 56', 'img/bowflex-loopband-56.jpg', 'Wil je niet zoveel zweten maar toch wel wat aan die dikke pens doen? gebruik dan de roei je matige roeitrainer.', 4),
-(16, 'Life Fitness F1 Smart Loopband', 'img/life-fitness-f1-smart-loopband.jpg', 'Wil je sportief overkomen, maar niet zweten of iets? Dan zie je er goed uit in deze automatische roeitrainer, niets doen en toch sportief lijken.', 4);
+(16, 'Life Fitness F1 Smart Loopband', 'img/life-fitness-f1-smart-loopband.jpg', 'Wil je sportief overkomen, maar niet zweten of iets? Dan zie je er goed uit in deze automatische roeitrainer, niets doen en toch sportief lijken.', 4),
+(19, 'Roeitrainer xxx', 'img', 'asds', 1),
+(20, 'Roeitrainer xxxx', 'img', 'slechtste roeitrainer ooit', 1);
 
 -- --------------------------------------------------------
 
@@ -91,16 +93,17 @@ CREATE TABLE `reviews` (
   `message` varchar(255) NOT NULL,
   `rating` int(1) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
-  `product_id` int(11) NOT NULL
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reviews`
 --
 
-INSERT INTO `reviews` (`id`, `name`, `message`, `rating`, `date`, `product_id`) VALUES
-(1, 'Yusuf Celik', 'lekker ding', 5, '2022-06-01', 1),
-(2, 'Yusuf Celik', 'beetje matig', 2, '2022-06-02', 2);
+INSERT INTO `reviews` (`id`, `name`, `message`, `rating`, `date`, `product_id`, `user_id`) VALUES
+(1, 'Yusuf Celik', 'lekker ding', 5, '2022-06-01', 1, 0),
+(2, 'Yusuf Celik', 'beetje matig', 2, '2022-06-02', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -150,7 +153,9 @@ ALTER TABLE `products`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `user_id_2` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -172,7 +177,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reviews`
