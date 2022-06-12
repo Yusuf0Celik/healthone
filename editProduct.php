@@ -4,10 +4,40 @@ include 'loggedInUser.php';
 if (!isset($userRole) == 'admin') {
   echo "Error: Not Allowed";
 } else {
+  $productId = $_GET["id"];
 
-  $products = $db->prepare("SELECT * FROM `products`");
+  $products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
+  $products->bindParam("id", $productId);
   $products->execute();
-  $result = $products->fetchAll(PDO::FETCH_ASSOC);
+  $productResult = $products->fetchAll(PDO::FETCH_ASSOC);
+  
+  $categories = $db->prepare("SELECT * FROM `categories`");
+  $categories->execute();
+  $categoriesResult = $categories->fetchAll(PDO::FETCH_ASSOC);
+  
+  foreach ($productResult as &$data) {
+    $productName = $data["name"];
+    $productDetail = $data["detail"];
+    $productCategoryID = $data["category_id"];
+  }
+
+  if (isset($_POST["submit"])) {
+    $productName = $_POST['productName'];
+    $categorySelect = $_POST['categorySelect'];
+    $productDetail = $_POST['productDetail'];
+    
+    if ($productName == '' || $categorySelect == '' || $productDetail == '') {
+      $statusAlert = 'alert-warning';
+      $statusMessage = 'Velden mogen niet leeg zijn';
+    } else {
+      $products = $db->prepare("UPDATE `products` SET `name` = '$productName', `detail` = '$productDetail', `category_id` = '$productCategoryID' WHERE `products`.`id` = :id;");
+      $products->bindParam("id", $productId);
+      if ($products->execute()) {
+        $statusAlert = 'alert-succes';
+        $statusMessage = 'Product geupdate!';
+      }
+    }
+    }
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +62,50 @@ if (!isset($userRole) == 'admin') {
   
   ?>
   <div class="row my-4">
+    <?php
+    if(isset($statusAlert)) 
+    { 
+      echo "<div class='alert $statusAlert' role='alert'>$statusMessage</div>";
+    } else {
+      echo '';
+    }
     
+    ?>
+  <form action="" method="post">
+      <div class="row my-4">
+        <div class="col">
+          <label for="name">Product Naam:</label>
+          <input type="text" name="productName" class="form-control" value="<?php echo $productName ?>" placeholder="Product Naam">
+        </div>
+        <div class="col">
+          <label for="category">Category:</label>
+          <select class="form-select" name="categorySelect">
+            <?php
+            foreach ($categoriesResult as &$categoriesData) {
+            ?>
+              <option value="<?php echo $categoriesData["id"] ?>" <?php if ($categoriesData["id"] == $productCategoryID) {echo "selected";} ?>><?php echo $categoriesData["name"] ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <label for="detail">Beschrijving:</label>
+          <textarea type="text" name="productDetail" class="form-control"><?php echo $productDetail ?></textarea>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <label for="detail">Image bij sportapparaat:</label>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" accept="image/jpeg, image/gif">
+          </div>
+        </div>
+      </div>
+        <button type="submit" class="btn btn-primary" name="submit">Edit Product</button>
+      </form>
   </div>
   <?php
   include_once 'components/footer.php';

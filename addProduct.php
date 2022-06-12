@@ -13,20 +13,21 @@ if (!isset($userRole) == 'admin') {
     $productName = $_POST['productName'];
     $categorySelect = $_POST['categorySelect'];
     $productDetail = $_POST['productDetail'];
-    echo $productName;
-    echo $categorySelect;
-    echo $productDetail;
+    $productImage = 'img';
     
     if ($productName == '' || $categorySelect == '' || $productDetail == '') {
-      $statusAlert = '<div class="alert alert-warning" role="alert">Empty box</div>';
+      $statusAlert = 'alert-warning';
+      $statusMessage = 'Empty Box';
     } else {
-      $users = $db->prepare("INSERT INTO products (name, image, detail, category_id) VALUES (:productName, img, :categorySelect, :productDetail)");
+      $users = $db->prepare("INSERT INTO products (name, image, detail, category_id) VALUES (:productName, :productImage, :productDetail, :categorySelect)");
       $users->bindParam("productName", $productName);
-      $users->bindParam("categorySelect", $categorySelect);
       $users->bindParam("productDetail", $productDetail);
-      $users->execute();
-      $user = $users->fetch(PDO::FETCH_ASSOC);
-      $statusAlert = '<div class="alert alert-succes" role="alert">Product added!</div>';
+      $users->bindParam("categorySelect", $categorySelect);
+      $users->bindParam("productImage", $productImage);
+      if ($users->execute()) {
+        $statusAlert = 'alert-succes';
+        $statusMessage = 'Product added!';
+      }
     }
   }
 ?>
@@ -53,6 +54,12 @@ if (!isset($userRole) == 'admin') {
       include_once 'components/navbar.php';
       include_once 'components/picture.php';
       
+      if(isset($statusAlert)) 
+      { 
+        echo "<div class='alert $statusAlert' role='alert'>$statusMessage</div>";
+      } else {
+        echo '';
+      }
       ?>
       <form action="" method="post">
       <div class="row my-4">
@@ -66,7 +73,7 @@ if (!isset($userRole) == 'admin') {
             <?php
             foreach ($result as &$data) {
             ?>
-              <option value="<?php echo $data["id"] ?>" <?php if ($data["id"] == 1) echo "selected" ?>><?php echo $data["name"] ?></option>
+              <option value="<?php echo $data["id"] ?>" <?php if ($data["id"] == 1) {echo "selected";} ?>><?php echo $data["name"] ?></option>
             <?php
             }
             ?>
@@ -90,7 +97,7 @@ if (!isset($userRole) == 'admin') {
         <button type="submit" class="btn btn-succes" name="submit">Add Product</button>
       </form>
       <?php
-      echo $statusAlert;
+      
       include_once 'components/footer.php';
       ?>
     </div>
