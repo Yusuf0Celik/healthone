@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once 'dbconnectie.php';
+include 'loggedInUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
