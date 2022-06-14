@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
-include 'loggedInUser.php';
+include 'logged_in_user.php';
 $categories = $db->prepare("SELECT * FROM `categories`");
 $categories->execute();
 $result = $categories->fetchAll(PDO::FETCH_ASSOC);

@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
-include 'loggedInUser.php';
+include 'logged_in_user.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

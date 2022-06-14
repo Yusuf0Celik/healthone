@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnectie.php';
-include 'loggedInUser.php';
+include 'logged_in_user.php';
 if (!isset($_SESSION["loggedin_user_id"])) {
   echo "Error: Log in first!";
 } else {

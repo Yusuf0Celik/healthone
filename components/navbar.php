@@ -26,7 +26,7 @@ if (isset($_SESSION["loggedin_user_id"])) {
         if ($userRole == 'admin') {
           ?>
         <li class="nav-item">
-          <a class="nav-link " href="./adminDashboard.php">Dashboard</a>
+          <a class="nav-link " href="./admin_dashboard.php">Dashboard</a>
         </li>
           <?php
         }
