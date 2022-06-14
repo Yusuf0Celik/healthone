@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
 
     $_SESSION['loggedin_user_id'] = $user['id'];
 
-    header("Location: ./loggedin.php");
+    header("Location: ./logged_in.php");
   }
 
   if (($email == '') ||($password == ''))  {

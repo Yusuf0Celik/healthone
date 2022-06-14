@@ -1,5 +1,33 @@
 <?php
 require_once 'dbconnectie.php';
+
+if (isset($_POST["submit"])) {
+  $username = filter_input(INPUT_POST, "username");
+  $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+  $password = filter_input(INPUT_POST, "password");
+  $role = 'member';
+
+  $users = $db->prepare("SELECT * FROM `users`");
+  $users->execute();
+  $user = $users->fetch(PDO::FETCH_ASSOC);
+  $checkUserEmail = $user["email"];
+
+  if ($email = $checkUserEmail) {
+    $alertStatus = 'alert-warning';
+    $alertMessage = 'Email is in gebruik';
+} else {
+    $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES (:username, :email, :password, :role)");
+    $query->bindParam("username", $username);
+    $query->bindParam("email", $email);
+    $query->bindParam("password", $password);
+    $query->bindParam("role", $role);
+    if ($query->execute()) {
+      $alertStatus = 'alert-success';
+      $alertMessage = "Gegevens Opgeslagen <a href='./login.php'>Log in!</a>";
+    }
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,25 +52,13 @@ require_once 'dbconnectie.php';
     include_once 'components/header.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
-    ?>
-    <div class="col-sm-12 mt-3">
-    <?php
-    if (isset($_POST["submit"])) {
-      $username = filter_input(INPUT_POST, "username");
-      $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-      $password = filter_input(INPUT_POST, "password");
-      $role = 'member';
-
-      $query = $db->prepare("INSERT INTO users (name, email, password, role) VALUES (:username, :email, :password, :role)");
-      $query->bindParam("username", $username);
-      $query->bindParam("email", $email);
-      $query->bindParam("password", $password);
-      $query->bindParam("role", $role);
-      if ($query->execute()) {
-        echo '<div class="alert alert-success" role="alert">Gegevens Opgeslagen <a href="./login.php">Log in!</a></div>';
-      }
+    if (isset($alertStatus)) {
+      echo "<div class='alert $alertStatus' role='alert'>$alertMessage</div>";
+    } else {
+      echo '';
     }
     ?>
+    <div class="col-sm-12 mt-3">
       <h4>Registreer je bij ons!</h4>
       <form method="POST" action="">
         <input type="hidden" name="form-sort" value="register">

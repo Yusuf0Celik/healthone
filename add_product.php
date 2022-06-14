@@ -8,28 +8,59 @@ if (!isset($userRole) == 'admin') {
   $categories = $db->prepare("SELECT * FROM `categories`");
   $categories->execute();
   $result = $categories->fetchAll(PDO::FETCH_ASSOC);
-
+  
   if (isset($_POST["submit"])) {
     $productName = $_POST['productName'];
     $categorySelect = $_POST['categorySelect'];
     $productDetail = $_POST['productDetail'];
-    $productImage = 'img';
+    $fileUpload = $_FILES["fileUpload"];
+    print_r($fileUpload);
     
-    if ($productName == '' || $categorySelect == '' || $productDetail == '') {
-      $statusAlert = 'alert-warning';
-      $statusMessage = 'Empty Box';
-    } else {
-      $users = $db->prepare("INSERT INTO products (name, image, detail, category_id) VALUES (:productName, :productImage, :productDetail, :categorySelect)");
-      $users->bindParam("productName", $productName);
-      $users->bindParam("productDetail", $productDetail);
-      $users->bindParam("categorySelect", $categorySelect);
-      $users->bindParam("productImage", $productImage);
-      if ($users->execute()) {
-        $statusAlert = 'alert-succes';
-        $statusMessage = 'Product added!';
+    $fileName = $fileUpload["name"];
+    $fileTmpName = $fileUpload["tmp_name"];
+    $fileSize = $fileUpload["size"];
+    $fileError = $fileUpload["error"];
+    $fileType = $fileUpload["type"];
+
+    $fileExtension = explode(".", $fileName );
+    $fileActualExtension = strtolower(end($fileExtension));
+    $allowedFileExt = array('jpg', 'jpeg', 'png', 'gif');
+
+    if (in_array($fileActualExtension, $allowedFileExt)) {
+      if ($fileError === 0) {
+        if ($fileSize < 500000) {
+          $fileNewName = uniqid('' , true). ".". $fileActualExtension;
+          $fileDir = "./img/$fileNewName";
+          move_uploaded_file($fileTmpName, $fileDir);
+
+          if ($productName == '' || $categorySelect == '' || $productDetail == '') {
+            $statusAlert = 'alert-warning';
+            $statusMessage = 'Empty Box';
+          } else {
+            $users = $db->prepare("INSERT INTO products (name, image, detail, category_id) VALUES (:productName, :productImage, :productDetail, :categorySelect)");
+            $users->bindParam("productName", $productName);
+            $users->bindParam("productDetail", $productDetail);
+            $users->bindParam("categorySelect", $categorySelect);
+            $users->bindParam("productImage", $fileDir);
+            if ($users->execute()) {
+              $statusAlert = 'alert-succes';
+              $statusMessage = 'Product added!';
+            }
+          }
+        } else {
+          $statusAlert = "alert-danger";
+          $statusMessage = 'Bestand moet minder dan 500kb zijn!';
+        }
+      } else {
+        $statusAlert = "alert-danger";
+        $statusMessage = 'Er is iets foutgegaan!';
       }
+    } else {
+      $statusAlert = 'alert-danger';
+      $statusMessage = 'Bestand niet toegestaan!';
     }
   }
+  print_r($_FILES["fileUpload"])
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -61,7 +92,7 @@ if (!isset($userRole) == 'admin') {
         echo '';
       }
       ?>
-      <form action="" method="post">
+      <form action="" method="post" enctype='multipart/form-data'>
       <div class="row my-4">
         <div class="col">
           <label for="name">Product Naam:</label>
@@ -90,7 +121,7 @@ if (!isset($userRole) == 'admin') {
         <div class="col">
           <label for="detail">Image bij sportapparaat:</label>
           <div class="input-group mb-3">
-            <input type="file" class="form-control" accept="image/jpeg, image/gif">
+            <input type="file" name="fileUpload" class="form-control">
           </div>
         </div>
       </div>
