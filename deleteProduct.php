@@ -4,7 +4,7 @@ include 'loggedInUser.php';
 if (!isset($userRole) == 'admin') {
   echo "Error: Not Allowed";
 } else {
-  $productID = $_GET["id"];
+  $productID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
   $products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
   $products->bindParam("id", $productID);
@@ -12,12 +12,17 @@ if (!isset($userRole) == 'admin') {
   $result = $products->fetch(PDO::FETCH_ASSOC);
 
   if (isset($_POST["submit"])) {
+    $deleteProduct = $db->prepare("DELETE FROM reviews WHERE product_id = :id");
+    $deleteProduct->bindParam("id", $productID);
+    $deleteProduct->execute();
+
     $deleteProduct = $db->prepare("DELETE FROM products WHERE id = :id");
     $deleteProduct->bindParam("id", $productID);
-    echo 'Post Submit werkt';
+
     if ($deleteProduct->execute()) {
-      echo 'Delete Product werkt';
-      header("./adminDashboard.php");
+      header("Location: ./adminDashboard.php");
+    } else {
+      print_r($deleteProduct->errorInfo());
     }
   }
 }
