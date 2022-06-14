@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $alertMessage = 'alert-succes';
     $userStatus = 'Logged In';
   } else {
-    $userStatus = 'Gebruiker bestaat niet';
+    $userStatus = 'Email/wachtwoord is incorrect';
   }
 } else {
   $email = '';
@@ -60,6 +60,9 @@ if (isset($_POST['submit'])) {
     include_once 'components/picture.php';
     ?>
     <div class="row gy-3 mt-3">
+      <?php if ($userStatus) { ?>
+      <div class="alert <?php echo $alertMessage; ?>"><?php echo $userStatus ?></div>
+      <?php } else {echo '';} ?>
       <div class="col-sm-12">
         <h4>Voer je gegevens in om in te loggen</h4>
         <form method="POST" action="">
@@ -79,9 +82,6 @@ if (isset($_POST['submit'])) {
           <div class="form-group mt-3">
             <button type="submit" name="submit" class="btn btn-outline-primary">Inloggen</button>
           </div>
-          <?php if (isset($_SERVER['submit'])) { ?>
-          <div class="alert <?php echo $alertMessage; ?>"><?php echo $userStatus ?></div>
-          <?php } ?>
           <div class="form-group mt-3">
             <a href="./register.php" class="">
               Nog geen account? Klik hier om je te registreren
