@@ -13,14 +13,13 @@ if (!isset($userRole) == 'admin') {
     $productName = $_POST['productName'];
     $categorySelect = $_POST['categorySelect'];
     $productDetail = $_POST['productDetail'];
-    $fileUpload = $_FILES["fileUpload"];
-    print_r($fileUpload);
+    $file_upload = $_FILES["file_upload"];
     
-    $fileName = $fileUpload["name"];
-    $fileTmpName = $fileUpload["tmp_name"];
-    $fileSize = $fileUpload["size"];
-    $fileError = $fileUpload["error"];
-    $fileType = $fileUpload["type"];
+    $fileName = $_FILES["file_upload"]["name"];
+    $fileTmpName = $_FILES["file_upload"]["tmp_name"];
+    $fileSize = $_FILES["file_upload"]["size"];
+    $fileError = $_FILES["file_upload"]["error"];
+    $fileType = $_FILES["file_upload"]["type"];
 
     $fileExtension = explode(".", $fileName );
     $fileActualExtension = strtolower(end($fileExtension));
@@ -60,7 +59,6 @@ if (!isset($userRole) == 'admin') {
       $statusMessage = 'Bestand niet toegestaan!';
     }
   }
-  print_r($_FILES["fileUpload"])
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -121,7 +119,7 @@ if (!isset($userRole) == 'admin') {
         <div class="col">
           <label for="detail">Image bij sportapparaat:</label>
           <div class="input-group mb-3">
-            <input type="file" name="fileUpload" class="form-control">
+            <input type="file" name="file_upload" class="form-control">
           </div>
         </div>
       </div>
