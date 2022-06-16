@@ -41,19 +41,18 @@ if (!isset($userRole) == 'admin') {
       if ($fileError === 0) {
         if ($fileSize < 500000) {
           $fileNewName = uniqid('', true) . "." . $fileActualExtension;
-          $fileDir = "./img/$fileNewName";
+          $fileDir = "img/$fileNewName";
           move_uploaded_file($fileTmpName, $fileDir);
 
           if ($productName == '' || $categorySelect == '' || $productDetail == '') {
             $statusAlert = 'alert-warning';
             $statusMessage = 'Velden mogen niet leeg zijn';
           } else {
-            var_dump($productDetail);
-            $products = $db->prepare("UPDATE products SET `name` = ':productName', `image` = ':fileDir', `detail` = ':productDetail', `category_id` = ':productCategoryID' WHERE `id` = :id");
+            $products = $db->prepare("UPDATE products SET name = :productName, image = :fileDir, detail = :productDetail, category_id = :productCategoryID WHERE id = :id");
             $products->bindParam("productName", $productName);
             $products->bindParam("fileDir", $fileDir);
             $products->bindParam("productDetail", $productDetail);
-            $products->bindParam("productCategoryID", $productCategoryID);
+            $products->bindParam("productCategoryID", $categorySelect);
             $products->bindParam("id", $productId);
             if ($products->execute()) {
               $statusAlert = 'alert-succes';
