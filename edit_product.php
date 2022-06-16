@@ -26,7 +26,7 @@ if (!isset($userRole) == 'admin') {
     $categorySelect = $_POST['categorySelect'];
     $productDetail = $_POST['productDetail'];
     $file_upload = $_FILES["file_upload"];
-    print_r($file_upload);
+
     $fileName = $_FILES["file_upload"]["name"];
     $fileTmpName = $_FILES["file_upload"]["tmp_name"];
     $fileSize = $_FILES["file_upload"]["size"];
@@ -48,15 +48,19 @@ if (!isset($userRole) == 'admin') {
             $statusAlert = 'alert-warning';
             $statusMessage = 'Velden mogen niet leeg zijn';
           } else {
-            $products = $db->prepare("UPDATE `products` SET `name` = ':productName', `image` = ':fileDir', `detail` = ':productDetail', `category_id` = ':productCategoryID' WHERE `products`.`id` = :id;");
-            $products->bindParam("id", $productId);
+            var_dump($productDetail);
+            $products = $db->prepare("UPDATE products SET `name` = ':productName', `image` = ':fileDir', `detail` = ':productDetail', `category_id` = ':productCategoryID' WHERE `id` = :id");
             $products->bindParam("productName", $productName);
+            $products->bindParam("fileDir", $fileDir);
             $products->bindParam("productDetail", $productDetail);
             $products->bindParam("productCategoryID", $productCategoryID);
-            $products->bindParam("fileDir", $fileDir);
+            $products->bindParam("id", $productId);
             if ($products->execute()) {
               $statusAlert = 'alert-succes';
               $statusMessage = 'Product geupdate!';
+            } else {
+              $statusAlert = 'alert-danger';
+              $statusMessage = 'Er is iets mis gegaan';
             }
           }
         } else {
@@ -106,7 +110,7 @@ if (!isset($userRole) == 'admin') {
         }
 
         ?>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
           <div class="row my-4">
             <div class="col">
               <label for="name">Product Naam:</label>
