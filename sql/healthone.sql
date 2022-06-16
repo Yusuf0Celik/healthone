@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 04:55 PM
+-- Generation Time: Jun 16, 2022 at 09:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -62,7 +62,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `detail`, `category_id`) VALUES
-(1, 'VirtuFit Row 450', 'img/row450.jpg', 'Een roeitrainer zorgt net als de crosstrainer voor een full body workout. Je spreekt vrijwel alle spieren aan in je lichaam door de roeiende beweging die je maakt. Met een roeimachine pak je primair de beenspieren, armspieren en rugspieren aan.', 1),
+(1, 'Roeitrainer Row 450', 'img/62ab6e03a6bfd9.46527505.jpg', 'Een roeitrainer zorgt net als de crosstrainer voor een full body workout. Je spreekt vrijwel alle spieren aan in je lichaam door de roeiende beweging die je maakt. Met een roeimachine pak je primair de beenspieren, armspieren en rugspieren aan.', 1),
 (2, 'VirtuFit Ultimate Pro 2', 'img/virtuFit-ultimate-pro-2.jpg', 'Wil je echt sporten dan kies je voor de roei je rot roeitrainer, zwaard, hard en je bent binnen no-time de expert.', 1),
 (3, 'Focus Fitness Row 2', 'img/focus_fitness_row_2.jpg', 'Wil je niet zoveel zweten maar toch wel wat aan die dikke pens doen? gebruik dan de roei je matige roeitrainer.', 1),
 (4, 'Infiniti R-100 IR', 'img/infiniti-r-100-ir.jpg', 'Wil je sportief overkomen, maar niet zweten of iets? Dan zie je er goed uit in deze automatische roeitrainer, niets doen en toch sportief lijken.', 1),
@@ -78,8 +78,7 @@ INSERT INTO `products` (`id`, `name`, `image`, `detail`, `category_id`) VALUES
 (14, 'Dukefitness Loopband T40', 'img/dukefitness-loopband-t40.jpg', 'Wil je echt sporten dan kies je voor de roei je rot roeitrainer, zwaard, hard en je bent binnen no-time de expert.', 4),
 (15, 'Bowflex Loopband 56', 'img/bowflex-loopband-56.jpg', 'Wil je niet zoveel zweten maar toch wel wat aan die dikke pens doen? gebruik dan de roei je matige roeitrainer.', 4),
 (16, 'Life Fitness F1 Smart Loopband', 'img/life-fitness-f1-smart-loopband.jpg', 'Wil je sportief overkomen, maar niet zweten of iets? Dan zie je er goed uit in deze automatische roeitrainer, niets doen en toch sportief lijken.', 4),
-(19, 'Roeitrainer xxx', 'img', 'asds', 1),
-(20, 'Roeitrainer xxxx', 'img', 'slechtste roeitrainer ooit', 1);
+(22, 'Spirit Fitness CRW800', 'img/62ab690ae49637.42479504.jpg', 'Een van de beste roeitrainers ooit', 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +101,6 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `name`, `message`, `rating`, `date`, `product_id`, `user_id`) VALUES
-(1, 'Yusuf Celik', 'lekker ding', 5, '2022-06-01', 1, 0),
 (2, 'Yusuf Celik', 'beetje matig', 2, '2022-06-02', 2, 0);
 
 -- --------------------------------------------------------
@@ -128,8 +126,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 (2, 'qwdasfq', 'qwerty@qwerty.nl', 'qwerty', 'member'),
 (3, 'hafea', 'test@gmail.com', 'qwerty', 'member'),
 (7, 'zxcvbn', 'test2@gmail.com', 'qwerty', 'member'),
-(8, 'Yusuf Celik', 'admin@gmail.com', 'admin', 'admin'),
-(22, 'Muhammed Mustafa Aktas', 'degamegast11@gmail.nl', 'qwerty', 'member');
+(8, 'Yusuf', 'admin@gmail.com', 'a', 'admin'),
+(22, 'Muhammed Mustafa Aktas', 'degamegast11@gmail.nl', 'qwerty', 'member'),
+(23, 'test user1', 'test1@gmail.com', 'qwerty', 'member');
 
 --
 -- Indexes for dumped tables
@@ -177,7 +176,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -189,7 +188,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
