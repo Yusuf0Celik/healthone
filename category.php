@@ -1,8 +1,11 @@
 <?php
 require_once 'dbconnectie.php';
 include 'logged_in_user.php';
+
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
 $categories = $db->prepare("SELECT * FROM `products` WHERE category_id = :id");
-$categories->bindParam("id", $_GET['id']);
+$categories->bindParam("id", $id);
 $categories->execute();
 $result = $categories->fetchAll(PDO::FETCH_ASSOC);
 
@@ -10,12 +13,12 @@ $result = $categories->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
   <?php  
-  include_once 'components/header.php';
+  include_once 'components/head.php';
   ?>
 <body>
   <div class="container p-3 my-4">
     <?php
-    include_once './components/head.php';
+    include_once './components/header.php';
     include_once './components/navbar.php';
     include_once './components/picture.php';
     ?>

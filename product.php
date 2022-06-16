@@ -1,8 +1,10 @@
 <?php
 require_once 'dbconnectie.php';
 include 'logged_in_user.php';
+
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 $products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
-$products->bindParam("id", $_GET['id']);
+$products->bindParam("id", $id);
 $products->execute();
 $result = $products->fetchAll(PDO::FETCH_ASSOC);
 
@@ -15,12 +17,12 @@ foreach ($result as &$product) {
 <!DOCTYPE html>
 <html lang="en">
   <?php  
-  include_once 'components/header.php';
+  include_once 'components/head.php';
   ?>
 <body>
   <div class="container p-3 my-4">
     <?php
-    include_once 'components/head.php';
+    include_once 'components/header.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
     ?>

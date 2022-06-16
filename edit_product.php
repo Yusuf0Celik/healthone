@@ -4,7 +4,7 @@ include 'logged_in_user.php';
 if (!isset($userRole) == 'admin') {
   echo "Error: Not Allowed";
 } else {
-  $productId = $_GET["id"];
+  $productId = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
   $products = $db->prepare("SELECT * FROM `products` WHERE id = :id");
   $products->bindParam("id", $productId);

@@ -30,12 +30,12 @@ if (!isset($userRole) == 'admin') {
   <!DOCTYPE html>
   <html lang="en">
   <?php  
-  include_once 'components/header.php';
+  include_once 'components/head.php';
   ?>
 <body>
   <div class="container p-3 my-4">
     <?php
-    include_once 'components/head.php';
+    include_once 'components/header.php';
     include_once 'components/navbar.php';
     include_once 'components/picture.php';
     
