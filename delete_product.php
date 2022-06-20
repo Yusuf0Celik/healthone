@@ -20,7 +20,7 @@ if (!isset($userRole) == 'admin') {
     $deleteProduct->bindParam("id", $productID);
 
     if ($deleteProduct->execute()) {
-      header("Location: ./adminDashboard.php");
+      header("Location: ./admin_dashboard.php");
     } else {
       print_r($deleteProduct->errorInfo());
     }
