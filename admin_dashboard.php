@@ -1,7 +1,7 @@
 <?php
 require_once 'dbconnectie.php';
 include 'logged_in_user.php';
-if (!isset($userRole) == 'admin') {
+if ($userRole != 'admin') {
   echo "Error: Not Allowed";
 } else {
 
