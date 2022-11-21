@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 09:18 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Nov 21, 2022 at 03:32 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,7 +101,10 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `name`, `message`, `rating`, `date`, `product_id`, `user_id`) VALUES
-(2, 'Yusuf Celik', 'beetje matig', 2, '2022-06-02', 2, 0);
+(1, 'Admin', 'cool', 2, '2022-06-02', 1, 1),
+(2, 'Admin', 'beetje matig', 2, '2022-06-02', 2, 1),
+(3, 'Admin', 'best cool', 2, '2022-06-02', 5, 1),
+(4, 'Admin', 'meh', 2, '2022-06-02', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -127,7 +130,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
 (3, 'hafea', 'test@gmail.com', 'qwerty', 'member'),
 (7, 'zxcvbn', 'test2@gmail.com', 'qwerty', 'member'),
 (8, 'Yusuf', 'admin@gmail.com', 'a', 'admin'),
-(22, 'Muhammed Mustafa Aktas', 'degamegast11@gmail.nl', 'qwerty', 'member'),
 (23, 'test user1', 'test1@gmail.com', 'qwerty', 'member');
 
 --
@@ -182,7 +184,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -195,10 +197,17 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+--
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
